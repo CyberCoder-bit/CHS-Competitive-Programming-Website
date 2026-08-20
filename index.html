@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="chs-cpc — Carmel High School Competitive Programming Club. Learn algorithms, practice problem solving, and compete in contests like USACO and Codeforces." />
+  <meta name="theme-color" content="#081428" />
+  <title>chs-cpc | Competitive Programming Club</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0b1729;
+      --panel: rgba(15, 31, 52, 0.78);
+      --panel-strong: #10223a;
+      --line: rgba(148, 184, 255, 0.16);
+      --text: #f5f8ff;
+      --muted: #a9b9cf;
+      --blue: #5da9ff;
+      --blue-strong: #2f82ff;
+      --cyan: #61e2ff;
+      --green: #7df0b1;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
+      --radius: 22px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(47,130,255,.18), transparent 32rem),
+        radial-gradient(circle at 88% 14%, rgba(97,226,255,.10), transparent 28rem),
+        linear-gradient(180deg, #07111f 0%, #081428 48%, #07111f 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image: linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
+      z-index: -1;
+    }
+
+    .wrap { width: min(calc(100% - 36px), var(--max)); margin-inline: auto; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 17, 31, .72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: #07111f;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      box-shadow: 0 0 28px rgba(93,169,255,.30);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 650;
+      transition: .2s ease;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,.055); }
+    .nav-links .join-small { color: white; background: rgba(47,130,255,.18); border: 1px solid rgba(93,169,255,.28); }
+
+    .hero {
+      padding: 92px 0 64px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid rgba(93,169,255,.26);
+      color: #bdd8ff;
+      background: rgba(47,130,255,.10);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 14px rgba(125,240,177,.75); }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: clamp(3rem, 7.8vw, 6.7rem);
+      line-height: .94;
+      letter-spacing: -.065em;
+      margin-bottom: 24px;
+      max-width: 840px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(110deg, #ffffff 5%, #a9ceff 48%, #61e2ff 92%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy > p {
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.3vw, 1.3rem);
+      max-width: 690px;
+      margin-bottom: 30px;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 13px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      border: 1px solid transparent;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      color: #07111f;
+      background: linear-gradient(135deg, #7ee8ff, #5da9ff);
+      box-shadow: 0 14px 34px rgba(47,130,255,.25);
+    }
+    .btn-secondary { color: var(--text); background: rgba(255,255,255,.045); border-color: var(--line); }
+
+    .terminal {
+      border: 1px solid rgba(93,169,255,.22);
+      background: rgba(4, 12, 23, .78);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: rotate(1.2deg);
+    }
+    .terminal-top {
+      height: 44px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 14px;
+      background: rgba(255,255,255,.025);
+    }
+    .bubble { width: 10px; height: 10px; border-radius: 50%; background: #24364f; }
+    .terminal pre {
+      margin: 0;
+      padding: 28px;
+      min-height: 330px;
+      color: #d6e5ff;
+      font-size: 14px;
+      line-height: 1.75;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+    }
+    .code-blue { color: #78b7ff; }
+    .code-cyan { color: #7deaff; }
+    .code-green { color: #7df0b1; }
+    .code-muted { color: #70849f; }
+
+    section { padding: 76px 0; }
+    .section-head { max-width: 720px; margin-bottom: 30px; }
+    .kicker { color: var(--cyan); font-size: 12px; text-transform: uppercase; letter-spacing: .18em; font-weight: 850; margin-bottom: 10px; }
+    h2 { font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.05; letter-spacing: -.045em; margin-bottom: 14px; }
+    .section-head p { color: var(--muted); font-size: 1.05rem; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(17,35,59,.78), rgba(10,24,42,.66));
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 10px 35px rgba(0,0,0,.15);
+    }
+    .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(93,169,255,.12);
+      border: 1px solid rgba(93,169,255,.18);
+      margin-bottom: 18px;
+      color: #9ac7ff;
+      font-weight: 900;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .card h3 { font-size: 1.08rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); margin-bottom: 0; font-size: .95rem; }
+
+    .meeting {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .meeting-main {
+      padding: 34px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(97,226,255,.13), transparent 18rem),
+        linear-gradient(135deg, rgba(47,130,255,.18), rgba(17,35,59,.68));
+      border: 1px solid rgba(93,169,255,.26);
+    }
+    .meeting-main h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -.04em; margin-bottom: 10px; }
+    .meeting-main p { color: #c2cee0; max-width: 570px; }
+
+    .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 25px 0 0; }
+    .chip { padding: 8px 11px; border-radius: 999px; border: 1px solid var(--line); color: #d9e7fb; background: rgba(7,17,31,.45); font-size: 13px; font-weight: 700; }
+
+    .join-panel { display: grid; gap: 12px; }
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 92px;
+      padding: 20px 22px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      text-decoration: none;
+      transition: .2s ease;
+    }
+    .link-card:hover { transform: translateY(-2px); border-color: rgba(93,169,255,.38); background: rgba(93,169,255,.07); }
+    .link-card small { display: block; color: var(--muted); margin-top: 3px; }
+    .arrow { color: var(--blue); font-weight: 900; font-size: 1.2rem; }
+
+    .resources { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .resource {
+      text-decoration: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .resource b { display: block; margin-bottom: 3px; }
+    .resource span { color: var(--muted); font-size: .9rem; }
+
+    .leadership { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .person { padding: 20px; text-align: left; }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      font-weight: 900;
+      color: #07111f;
+      background: linear-gradient(135deg, #8eeaff, #72aaff);
+    }
+    .person strong { display: block; }
+    .person span { color: var(--muted); font-size: 13px; }
+
+    .cta {
+      margin: 30px 0 76px;
+      padding: clamp(28px, 6vw, 54px);
+      border-radius: 30px;
+      text-align: center;
+      border: 1px solid rgba(93,169,255,.27);
+      background:
+        radial-gradient(circle at 50% -35%, rgba(97,226,255,.20), transparent 24rem),
+        linear-gradient(180deg, rgba(47,130,255,.11), rgba(255,255,255,.025));
+    }
+    .cta h2 { max-width: 760px; margin-inline: auto; }
+    .cta p { color: var(--muted); max-width: 650px; margin: 0 auto 26px; }
+    .cta .actions { justify-content: center; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 28px 0 38px;
+      font-size: 13px;
+    }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 900px) {
+      .hero, .meeting { grid-template-columns: 1fr; }
+      .hero { padding-top: 66px; gap: 38px; }
+      .terminal { transform: none; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .leadership { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 680px) {
+      .nav-inner { min-height: 64px; }
+      .nav-links a:not(.join-small) { display: none; }
+      h1 { font-size: clamp(3.25rem, 18vw, 5.6rem); }
+      section { padding: 58px 0; }
+      .resources, .leadership { grid-template-columns: 1fr; }
+      .meeting-main { padding: 26px; }
+      .terminal pre { padding: 22px; min-height: auto; font-size: 12.5px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <nav>
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="chs-cpc home">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span>chs-cpc</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#resources">Resources</a>
+        <a href="#leadership">Leadership</a>
+        <a href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer" class="join-small">Join Discord</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="dot"></span> Carmel High School</div>
+        <h1><span class="gradient-text">Competitive<br />Programming</span><br />Club</h1>
+        <p>Learn algorithms. Solve hard problems. Compete together. <strong style="color:#eaf3ff">chs-cpc</strong> is a student community for anyone who wants to get better at competitive programming — from first contest to advanced problem solving.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">Join the Discord <span>↗</span></a>
+          <a class="btn btn-secondary" href="#about">Explore the club</a>
+        </div>
+      </div>
+
+      <div class="terminal reveal" aria-label="Example competitive programming code">
+        <div class="terminal-top"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span></div>
+        <pre><span class="code-muted">// chs-cpc.cpp</span>
+<span class="code-blue">#include</span> &lt;bits/stdc++.h&gt;
+<span class="code-blue">using namespace</span> std;
+
+<span class="code-blue">int</span> main() {
+  ios::sync_with_stdio(<span class="code-cyan">false</span>);
+  cin.tie(<span class="code-cyan">nullptr</span>);
+
+  string goal = <span class="code-green">"learn + solve + compete"</span>;
+  cout &lt;&lt; goal &lt;&lt; <span class="code-green">'\n'</span>;
+
+  <span class="code-muted">// See you Thursday after school.</span>
+  <span class="code-blue">return</span> 0;
+}</pre>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">What we do</div>
+          <h2>Turn problem solving into a competitive skill.</h2>
+          <p>We meet at Carmel High School to learn competitive programming concepts, work through problems, and prepare for contests such as USACO and Codeforces.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="icon">01</div>
+            <h3>Learn</h3>
+            <p>Club lectures break down algorithms, data structures, implementation ideas, and contest strategy into approachable steps.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">02</div>
+            <h3>Practice</h3>
+            <p>Build speed and confidence by solving problems, comparing approaches, debugging code, and learning from other members.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">03</div>
+            <h3>Compete</h3>
+            <p>Apply what you learn in online and in-person programming competitions, from beginner-friendly rounds to advanced contests.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="wrap meeting">
+        <div class="meeting-main reveal">
+          <div class="kicker">Weekly meetings</div>
+          <h3>Just show up.</h3>
+          <p>No complicated application process. Come to a meeting, meet the team, and start solving. Meeting reminders and event updates are posted in Discord.</p>
+          <div class="meta-row">
+            <span class="chip">Thursday</span>
+            <span class="chip">After school</span>
+            <span class="chip">Carmel High School</span>
+            <span class="chip">All experience levels</span>
+          </div>
+        </div>
+        <div class="join-panel reveal">
+          <a class="link-card" href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">
+            <div><strong>Discord</strong><small>Meeting reminders, announcements, and club chat</small></div><span class="arrow">↗</span>
+          </a>
+          <a class="link-card" href="https://www.instagram.com/chs.cpc/" target="_blank" rel="noopener noreferrer">
+            <div><strong>Instagram · @chs.cpc</strong><small>Club updates and highlights</small></div><span class="arrow">↗</span>
+          </a>
+          <a class="link-card" href="mailto:chscompetitiveprogrammingclub@gmail.com">
+            <div><strong>Email</strong><small>chscompetitiveprogrammingclub@gmail.com</small></div><span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">Resources</div>
+          <h2>Train between meetings.</h2>
+          <p>A few useful places to learn concepts, practice problems, and find contests.</p>
+        </div>
+        <div class="resources">
+          <a class="card resource reveal" href="https://usaco.guide/" target="_blank" rel="noopener noreferrer">
+            <div class="icon">UG</div><div><b>USACO Guide</b><span>Structured competitive programming curriculum and problem sets.</span></div>
+          </a>
+          <a class="card resource reveal" href="https://codeforces.com/" target="_blank" rel="noopener noreferrer">
+            <div class="icon">CF</div><div><b>Codeforces</b><span>Frequent contests, practice problems, editorials, and ratings.</span></div>
+          </a>
+          <a class="card resource reveal" href="https://usaco.org/" target="_blank" rel="noopener noreferrer">
+            <div class="icon">US</div><div><b>USACO</b><span>Official USA Computing Olympiad contests and training information.</span></div>
+          </a>
+          <a class="card resource reveal" href="https://cp-algorithms.com/" target="_blank" rel="noopener noreferrer">
+            <div class="icon">CP</div><div><b>CP-Algorithms</b><span>Detailed reference material for common algorithms and data structures.</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadership">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">2026–27</div>
+          <h2>Leadership team</h2>
+          <p>The students helping organize chs-cpc for the school year.</p>
+        </div>
+        <div class="leadership">
+          <div class="card person reveal"><div class="avatar">JL</div><strong>Justin Li</strong><span>Officer</span></div>
+          <div class="card person reveal"><div class="avatar">JX</div><strong>Jason Xu</strong><span>Officer</span></div>
+          <div class="card person reveal"><div class="avatar">AL</div><strong>Alan Lu</strong><span>Officer</span></div>
+          <div class="card person reveal"><div class="avatar">HB</div><strong>Hrishabh Bhowmik</strong><span>Officer</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section class="cta reveal">
+        <div class="kicker">Ready to start?</div>
+        <h2>You do not need to be an expert to join.</h2>
+        <p>Bring a laptop, bring questions, and bring a willingness to solve. Join the Discord for the latest meeting and event information.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">Join chs-cpc on Discord <span>↗</span></a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/chs.cpc/" target="_blank" rel="noopener noreferrer">Follow @chs.cpc</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div><strong style="color:#dce9fb">chs-cpc</strong> · Competitive Programming Club · Carmel High School</div>
+      <div class="footer-links">
+        <a href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">Discord</a>
+        <a href="https://www.instagram.com/chs.cpc/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="mailto:chscompetitiveprogrammingclub@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const items = document.querySelectorAll('.reveal');
+
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      items.forEach((item) => item.classList.add('visible'));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      items.forEach((item) => observer.observe(item));
+    }
+  </script>
+</body>
+</html>
