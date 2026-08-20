@@ -3,24 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="chs-cpc — Carmel High School Competitive Programming Club. Learn algorithms, practice problem solving, and compete in contests like USACO and Codeforces." />
-  <meta name="theme-color" content="#081428" />
+  <meta name="description" content="chs-cpc — Carmel High School Competitive Programming Club. Learn algorithms, solve problems, and compete in USACO, Codeforces, and more." />
+  <meta name="theme-color" content="#020502" />
   <title>chs-cpc | Competitive Programming Club</title>
+  <link rel="icon" type="image/webp" href="assets/chs-cpc-simple.webp" />
   <style>
     :root {
-      --bg: #07111f;
-      --bg-soft: #0b1729;
-      --panel: rgba(15, 31, 52, 0.78);
-      --panel-strong: #10223a;
-      --line: rgba(148, 184, 255, 0.16);
-      --text: #f5f8ff;
-      --muted: #a9b9cf;
-      --blue: #5da9ff;
-      --blue-strong: #2f82ff;
-      --cyan: #61e2ff;
-      --green: #7df0b1;
-      --shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
-      --radius: 22px;
+      --bg: #020502;
+      --bg-soft: #071008;
+      --panel: rgba(5, 14, 7, .86);
+      --panel-2: rgba(9, 22, 11, .92);
+      --line: rgba(58, 255, 90, .18);
+      --line-strong: rgba(58, 255, 90, .42);
+      --text: #f5fff7;
+      --muted: #97aa9b;
+      --green: #35ef58;
+      --green-hot: #00ff41;
+      --green-deep: #079527;
+      --white: #ffffff;
+      --shadow: 0 24px 90px rgba(0, 0, 0, .55);
+      --radius: 18px;
       --max: 1160px;
     }
 
@@ -30,41 +32,60 @@
       margin: 0;
       color: var(--text);
       background:
-        radial-gradient(circle at 12% 8%, rgba(47,130,255,.18), transparent 32rem),
-        radial-gradient(circle at 88% 14%, rgba(97,226,255,.10), transparent 28rem),
-        linear-gradient(180deg, #07111f 0%, #081428 48%, #07111f 100%);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
+        radial-gradient(circle at 70% -10%, rgba(0, 255, 65, .10), transparent 34rem),
+        radial-gradient(circle at 6% 28%, rgba(0, 255, 65, .055), transparent 26rem),
+        var(--bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      line-height: 1.65;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    a { color: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-
-    .noise {
+    body::before {
+      content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: .22;
-      background-image: linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-      background-size: 32px 32px;
-      mask-image: linear-gradient(to bottom, black, transparent 82%);
-      z-index: -1;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(53, 239, 88, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(53, 239, 88, .035) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.75) 42%, transparent 96%);
     }
 
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: .09;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.07) 0,
+        rgba(255,255,255,.07) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+      mix-blend-mode: soft-light;
+    }
+
+    ::selection { background: var(--green); color: #001a05; }
+    a { color: inherit; }
     .wrap { width: min(calc(100% - 36px), var(--max)); margin-inline: auto; }
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
+      background: rgba(2, 5, 2, .84);
       backdrop-filter: blur(18px);
-      background: rgba(7, 17, 31, .72);
       border-bottom: 1px solid var(--line);
     }
 
     .nav-inner {
-      min-height: 72px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -74,84 +95,100 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
       text-decoration: none;
-      font-weight: 800;
-      letter-spacing: -.02em;
+      font-weight: 900;
+      letter-spacing: -.03em;
     }
 
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      color: #07111f;
-      background: linear-gradient(135deg, var(--cyan), var(--blue));
-      box-shadow: 0 0 28px rgba(93,169,255,.30);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 15px;
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      border: 1px solid rgba(53,239,88,.32);
+      background: #000;
+      box-shadow: 0 0 26px rgba(0,255,65,.14);
     }
 
-    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+    .brand-text strong { color: var(--white); font-size: 15px; }
+    .brand-text span { color: var(--green); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; margin-top: 5px; }
+
+    .nav-links { display: flex; align-items: center; gap: 5px; }
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      padding: 9px 12px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 650;
-      transition: .2s ease;
+      padding: 9px 11px;
+      font-size: 13px;
+      border: 1px solid transparent;
+      transition: .18s ease;
     }
-    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,.055); }
-    .nav-links .join-small { color: white; background: rgba(47,130,255,.18); border: 1px solid rgba(93,169,255,.28); }
+    .nav-links a:hover { color: var(--green); border-color: var(--line); background: rgba(53,239,88,.035); }
+    .nav-links .join-small {
+      color: #001a05;
+      background: var(--green);
+      border-color: var(--green);
+      font-weight: 900;
+      margin-left: 4px;
+    }
+    .nav-links .join-small:hover { color: #001a05; background: #6aff7f; border-color: #6aff7f; }
 
     .hero {
-      padding: 92px 0 64px;
+      padding: 92px 0 70px;
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 56px;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 62px;
       align-items: center;
+      min-height: calc(100vh - 74px);
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      border: 1px solid rgba(93,169,255,.26);
-      color: #bdd8ff;
-      background: rgba(47,130,255,.10);
-      border-radius: 999px;
+      gap: 10px;
+      border: 1px solid var(--line-strong);
+      color: var(--green);
+      background: rgba(0,255,65,.035);
       padding: 7px 11px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 20px;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
     }
 
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 14px rgba(125,240,177,.75); }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green-hot);
+      box-shadow: 0 0 15px var(--green-hot);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse { 50% { opacity: .35; box-shadow: 0 0 5px var(--green-hot); } }
 
-    h1, h2, h3, p { margin-top: 0; }
+    h1,h2,h3,p { margin-top: 0; }
     h1 {
-      font-size: clamp(3rem, 7.8vw, 6.7rem);
-      line-height: .94;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: clamp(3.1rem, 7.2vw, 6.55rem);
+      line-height: .92;
       letter-spacing: -.065em;
-      margin-bottom: 24px;
-      max-width: 840px;
+      margin-bottom: 26px;
+      max-width: 780px;
     }
-
-    .gradient-text {
-      background: linear-gradient(110deg, #ffffff 5%, #a9ceff 48%, #61e2ff 92%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    h1 .white { color: var(--white); }
+    h1 .green {
+      color: var(--green);
+      text-shadow: 0 0 28px rgba(0,255,65,.16);
     }
 
     .hero-copy > p {
       color: var(--muted);
-      font-size: clamp(1.05rem, 2.3vw, 1.3rem);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: clamp(1.03rem, 2.1vw, 1.24rem);
       max-width: 690px;
       margin-bottom: 30px;
     }
+    .hero-copy > p strong { color: var(--white); }
 
     .actions { display: flex; flex-wrap: wrap; gap: 12px; }
     .btn {
@@ -161,209 +198,345 @@
       gap: 9px;
       min-height: 48px;
       padding: 0 18px;
-      border-radius: 13px;
+      border: 1px solid var(--line-strong);
       text-decoration: none;
-      font-weight: 800;
-      font-size: 14px;
-      border: 1px solid transparent;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: .01em;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
     }
     .btn:hover { transform: translateY(-2px); }
     .btn-primary {
-      color: #07111f;
-      background: linear-gradient(135deg, #7ee8ff, #5da9ff);
-      box-shadow: 0 14px 34px rgba(47,130,255,.25);
+      color: #001a05;
+      background: var(--green);
+      border-color: var(--green);
+      box-shadow: 0 12px 38px rgba(0,255,65,.13);
     }
-    .btn-secondary { color: var(--text); background: rgba(255,255,255,.045); border-color: var(--line); }
+    .btn-primary:hover { background: #68ff80; }
+    .btn-secondary { color: var(--text); background: rgba(255,255,255,.018); }
+    .btn-secondary:hover { color: var(--green); background: rgba(53,239,88,.055); }
 
-    .terminal {
-      border: 1px solid rgba(93,169,255,.22);
-      background: rgba(4, 12, 23, .78);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transform: rotate(1.2deg);
-    }
-    .terminal-top {
-      height: 44px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      padding: 0 14px;
-      background: rgba(255,255,255,.025);
-    }
-    .bubble { width: 10px; height: 10px; border-radius: 50%; background: #24364f; }
-    .terminal pre {
-      margin: 0;
-      padding: 28px;
-      min-height: 330px;
-      color: #d6e5ff;
-      font-size: 14px;
-      line-height: 1.75;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      white-space: pre-wrap;
-    }
-    .code-blue { color: #78b7ff; }
-    .code-cyan { color: #7deaff; }
-    .code-green { color: #7df0b1; }
-    .code-muted { color: #70849f; }
-
-    section { padding: 76px 0; }
-    .section-head { max-width: 720px; margin-bottom: 30px; }
-    .kicker { color: var(--cyan); font-size: 12px; text-transform: uppercase; letter-spacing: .18em; font-weight: 850; margin-bottom: 10px; }
-    h2 { font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.05; letter-spacing: -.045em; margin-bottom: 14px; }
-    .section-head p { color: var(--muted); font-size: 1.05rem; }
-
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(17,35,59,.78), rgba(10,24,42,.66));
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 10px 35px rgba(0,0,0,.15);
-    }
-    .icon {
-      width: 42px;
-      height: 42px;
+    .logo-stage {
+      position: relative;
+      min-height: 485px;
       display: grid;
       place-items: center;
-      border-radius: 12px;
-      background: rgba(93,169,255,.12);
-      border: 1px solid rgba(93,169,255,.18);
-      margin-bottom: 18px;
-      color: #9ac7ff;
-      font-weight: 900;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
-    .card h3 { font-size: 1.08rem; margin-bottom: 8px; }
-    .card p { color: var(--muted); margin-bottom: 0; font-size: .95rem; }
+    .logo-stage::before {
+      content: "";
+      position: absolute;
+      width: min(470px, 90vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,255,65,.13), rgba(0,255,65,.035) 40%, transparent 69%);
+      filter: blur(4px);
+      animation: breathe 5s ease-in-out infinite;
+    }
+    @keyframes breathe { 50% { transform: scale(1.06); opacity: .72; } }
+
+    .logo-frame {
+      position: relative;
+      width: min(420px, 90vw);
+      background: #000;
+      border: 1px solid var(--line-strong);
+      padding: 18px;
+      box-shadow: var(--shadow), 0 0 45px rgba(0,255,65,.08);
+    }
+    .logo-frame::before,
+    .logo-frame::after {
+      content: "";
+      position: absolute;
+      width: 48px; height: 48px;
+      border-color: var(--green);
+      pointer-events: none;
+    }
+    .logo-frame::before { top: -1px; left: -1px; border-top: 2px solid; border-left: 2px solid; }
+    .logo-frame::after { right: -1px; bottom: -1px; border-right: 2px solid; border-bottom: 2px solid; }
+    .logo-frame img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      image-rendering: auto;
+      filter: contrast(1.04) saturate(1.05);
+    }
+    .logo-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 13px 3px 0;
+      color: #6d8070;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .logo-caption span:last-child { color: var(--green); }
+
+    section { padding: 78px 0; }
+    .section-head { max-width: 760px; margin-bottom: 32px; }
+    .kicker {
+      color: var(--green);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .19em;
+      font-weight: 900;
+      margin-bottom: 11px;
+    }
+    h2 {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: clamp(2.1rem, 4.6vw, 3.7rem);
+      line-height: 1.02;
+      letter-spacing: -.05em;
+      margin-bottom: 14px;
+    }
+    .section-head p {
+      color: var(--muted);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 1.02rem;
+    }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .card {
+      position: relative;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(7,17,8,.92), rgba(3,8,4,.94));
+      padding: 24px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.20);
+      overflow: hidden;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(53,239,88,.45), transparent);
+      opacity: .7;
+    }
+    .card:hover { border-color: rgba(53,239,88,.35); }
+    .icon {
+      width: 43px; height: 43px;
+      display: grid; place-items: center;
+      margin-bottom: 18px;
+      color: var(--green);
+      border: 1px solid var(--line-strong);
+      background: rgba(0,255,65,.035);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .card h3 {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 1.08rem;
+      margin-bottom: 8px;
+    }
+    .card p {
+      color: var(--muted);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      margin-bottom: 0;
+      font-size: .95rem;
+    }
+
+    .brand-strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,255,65,.018);
+      overflow: hidden;
+    }
+    .brand-strip-inner {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: center;
+      gap: 28px;
+      min-height: 185px;
+      padding: 24px 0;
+    }
+    .brand-strip img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      background: #000;
+      border: 1px solid var(--line);
+    }
+    .brand-strip h3 {
+      font-size: clamp(1.45rem, 3vw, 2.2rem);
+      margin-bottom: 8px;
+      color: var(--white);
+    }
+    .brand-strip p { color: var(--muted); margin: 0; max-width: 750px; }
 
     .meeting {
       display: grid;
       grid-template-columns: 1.05fr .95fr;
-      gap: 18px;
+      gap: 16px;
       align-items: stretch;
     }
     .meeting-main {
       padding: 34px;
-      border-radius: 26px;
+      border: 1px solid var(--line-strong);
       background:
-        radial-gradient(circle at 88% 12%, rgba(97,226,255,.13), transparent 18rem),
-        linear-gradient(135deg, rgba(47,130,255,.18), rgba(17,35,59,.68));
-      border: 1px solid rgba(93,169,255,.26);
+        linear-gradient(135deg, rgba(0,255,65,.055), transparent 46%),
+        var(--panel);
     }
-    .meeting-main h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -.04em; margin-bottom: 10px; }
-    .meeting-main p { color: #c2cee0; max-width: 570px; }
+    .meeting-main h3 {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      letter-spacing: -.045em;
+      margin-bottom: 10px;
+    }
+    .meeting-main p { color: var(--muted); max-width: 570px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 9px; margin: 25px 0 0; }
+    .chip {
+      padding: 8px 10px;
+      color: #d9f9df;
+      background: rgba(0,255,65,.035);
+      border: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 800;
+    }
 
-    .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 25px 0 0; }
-    .chip { padding: 8px 11px; border-radius: 999px; border: 1px solid var(--line); color: #d9e7fb; background: rgba(7,17,31,.45); font-size: 13px; font-weight: 700; }
-
-    .join-panel { display: grid; gap: 12px; }
+    .join-panel { display: grid; gap: 10px; }
     .link-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
       min-height: 92px;
-      padding: 20px 22px;
-      background: rgba(255,255,255,.035);
+      padding: 20px 21px;
+      background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 20px;
       text-decoration: none;
-      transition: .2s ease;
+      transition: .18s ease;
     }
-    .link-card:hover { transform: translateY(-2px); border-color: rgba(93,169,255,.38); background: rgba(93,169,255,.07); }
-    .link-card small { display: block; color: var(--muted); margin-top: 3px; }
-    .arrow { color: var(--blue); font-weight: 900; font-size: 1.2rem; }
+    .link-card:hover {
+      border-color: var(--line-strong);
+      background: rgba(0,255,65,.045);
+      transform: translateX(3px);
+    }
+    .link-card strong { color: var(--white); }
+    .link-card small { display: block; color: var(--muted); margin-top: 3px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    .arrow { color: var(--green); font-weight: 900; font-size: 1.2rem; }
 
-    .resources { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    .resource {
-      text-decoration: none;
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
+    .resources { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .resource { display: flex; align-items: flex-start; gap: 16px; text-decoration: none; }
     .resource b { display: block; margin-bottom: 3px; }
-    .resource span { color: var(--muted); font-size: .9rem; }
+    .resource span { color: var(--muted); font-size: .9rem; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
 
     .leadership { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .person { padding: 20px; text-align: left; }
+    .person { padding: 20px; }
     .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 13px;
-      display: grid;
-      place-items: center;
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
       margin-bottom: 14px;
+      color: #001a05;
+      background: var(--green);
       font-weight: 900;
-      color: #07111f;
-      background: linear-gradient(135deg, #8eeaff, #72aaff);
+      box-shadow: 0 0 25px rgba(0,255,65,.10);
     }
-    .person strong { display: block; }
-    .person span { color: var(--muted); font-size: 13px; }
+    .person strong { display: block; color: var(--white); }
+    .person span { color: var(--muted); font-size: 12px; }
+
+    .terminal {
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      background: #010301;
+      box-shadow: var(--shadow);
+    }
+    .terminal-top {
+      min-height: 42px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 14px;
+      color: #58715c;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .terminal pre {
+      margin: 0;
+      padding: 22px;
+      color: #dfffe5;
+      font-size: 12.5px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .code-green { color: var(--green); }
+    .code-muted { color: #536956; }
+    .code-white { color: var(--white); }
 
     .cta {
-      margin: 30px 0 76px;
-      padding: clamp(28px, 6vw, 54px);
-      border-radius: 30px;
+      margin: 28px 0 76px;
+      padding: clamp(30px, 6vw, 56px);
       text-align: center;
-      border: 1px solid rgba(93,169,255,.27);
+      border: 1px solid var(--line-strong);
       background:
-        radial-gradient(circle at 50% -35%, rgba(97,226,255,.20), transparent 24rem),
-        linear-gradient(180deg, rgba(47,130,255,.11), rgba(255,255,255,.025));
+        radial-gradient(circle at 50% -20%, rgba(0,255,65,.12), transparent 24rem),
+        #030804;
     }
-    .cta h2 { max-width: 760px; margin-inline: auto; }
-    .cta p { color: var(--muted); max-width: 650px; margin: 0 auto 26px; }
+    .cta h2 { max-width: 800px; margin-inline: auto; }
+    .cta p { color: var(--muted); max-width: 680px; margin: 0 auto 26px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
     .cta .actions { justify-content: center; }
 
     footer {
       border-top: 1px solid var(--line);
       color: var(--muted);
       padding: 28px 0 38px;
-      font-size: 13px;
+      font-size: 12px;
     }
-    .footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .footer-brand { display: flex; align-items: center; gap: 11px; }
+    .footer-brand img { width: 38px; height: 38px; object-fit: cover; border: 1px solid var(--line); }
+    .footer-brand strong { color: var(--white); }
     .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
     .footer-links a { text-decoration: none; }
-    .footer-links a:hover { color: var(--text); }
+    .footer-links a:hover { color: var(--green); }
 
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal { opacity: 0; transform: translateY(17px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
       .reveal { opacity: 1; transform: none; }
     }
 
     @media (max-width: 900px) {
       .hero, .meeting { grid-template-columns: 1fr; }
-      .hero { padding-top: 66px; gap: 38px; }
-      .terminal { transform: none; }
+      .hero { padding-top: 62px; min-height: auto; gap: 28px; }
+      .logo-stage { min-height: 390px; }
       .grid-3 { grid-template-columns: 1fr; }
       .leadership { grid-template-columns: repeat(2, 1fr); }
+      .brand-strip-inner { grid-template-columns: 135px 1fr; }
+      .brand-strip img { width: 125px; height: 125px; }
     }
 
     @media (max-width: 680px) {
       .nav-inner { min-height: 64px; }
+      .brand-text span { display: none; }
       .nav-links a:not(.join-small) { display: none; }
-      h1 { font-size: clamp(3.25rem, 18vw, 5.6rem); }
+      h1 { font-size: clamp(3rem, 17vw, 5.35rem); }
       section { padding: 58px 0; }
       .resources, .leadership { grid-template-columns: 1fr; }
-      .meeting-main { padding: 26px; }
-      .terminal pre { padding: 22px; min-height: auto; font-size: 12.5px; }
+      .brand-strip-inner { grid-template-columns: 1fr; text-align: center; padding: 32px 0; }
+      .brand-strip img { margin-inline: auto; }
+      .meeting-main { padding: 25px; }
+      .logo-stage { min-height: 330px; }
+      .logo-frame { width: min(330px, 90vw); padding: 13px; }
+      .logo-caption { flex-direction: column; gap: 3px; }
     }
   </style>
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
-
   <nav>
     <div class="wrap nav-inner">
       <a class="brand" href="#top" aria-label="chs-cpc home">
-        <span class="brand-mark">&lt;/&gt;</span>
-        <span>chs-cpc</span>
+        <img src="assets/chs-cpc-simple.webp" alt="chs-cpc simple logo" />
+        <span class="brand-text">
+          <strong>chs-cpc</strong>
+          <span>Competitive Programming Club</span>
+        </span>
       </a>
       <div class="nav-links">
         <a href="#about">About</a>
@@ -377,38 +550,50 @@
   <main id="top">
     <div class="wrap hero">
       <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="dot"></span> Carmel High School</div>
-        <h1><span class="gradient-text">Competitive<br />Programming</span><br />Club</h1>
-        <p>Learn algorithms. Solve hard problems. Compete together. <strong style="color:#eaf3ff">chs-cpc</strong> is a student community for anyone who wants to get better at competitive programming — from first contest to advanced problem solving.</p>
+        <div class="eyebrow"><span class="status-dot"></span> Carmel High School // online</div>
+        <h1><span class="white">Competitive</span><br /><span class="green">Programming</span><br /><span class="white">Club</span></h1>
+        <p><strong>Learn algorithms. Solve hard problems. Compete together.</strong> chs-cpc is Carmel High School's community for competitive programming, from your first contest to advanced problem solving.</p>
         <div class="actions">
-          <a class="btn btn-primary" href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">Join the Discord <span>↗</span></a>
-          <a class="btn btn-secondary" href="#about">Explore the club</a>
+          <a class="btn btn-primary" href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">JOIN_DISCORD ↗</a>
+          <a class="btn btn-secondary" href="#about">EXPLORE_CLUB ↓</a>
+        </div>
+
+        <div class="terminal reveal" aria-label="chs-cpc terminal">
+          <div class="terminal-top"><span>~/chs-cpc</span><span>status: ready</span></div>
+          <pre><span class="code-muted">$</span> <span class="code-white">./club --mission</span>
+<span class="code-green">[OK]</span> learn algorithms
+<span class="code-green">[OK]</span> practice problem solving
+<span class="code-green">[OK]</span> compete in USACO + Codeforces
+<span class="code-muted">next_meeting:</span> Thursday after school</pre>
         </div>
       </div>
 
-      <div class="terminal reveal" aria-label="Example competitive programming code">
-        <div class="terminal-top"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span></div>
-        <pre><span class="code-muted">// chs-cpc.cpp</span>
-<span class="code-blue">#include</span> &lt;bits/stdc++.h&gt;
-<span class="code-blue">using namespace</span> std;
+      <div class="logo-stage reveal">
+        <div class="logo-frame">
+          <img src="assets/chs-cpc.jpg" alt="Carmel Competitive Programming Club logo with angle brackets and a green code C" />
+          <div class="logo-caption">
+            <span>Carmel // competitive programming</span>
+            <span>chs-cpc</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<span class="code-blue">int</span> main() {
-  ios::sync_with_stdio(<span class="code-cyan">false</span>);
-  cin.tie(<span class="code-cyan">nullptr</span>);
-
-  string goal = <span class="code-green">"learn + solve + compete"</span>;
-  cout &lt;&lt; goal &lt;&lt; <span class="code-green">'\n'</span>;
-
-  <span class="code-muted">// See you Thursday after school.</span>
-  <span class="code-blue">return</span> 0;
-}</pre>
+    <div class="brand-strip">
+      <div class="wrap brand-strip-inner reveal">
+        <img src="assets/chs-cpc-simple.webp" alt="Simplified green code logo for chs-cpc" />
+        <div>
+          <div class="kicker">Our visual identity</div>
+          <h3>Black. White. Code green.</h3>
+          <p>The site now follows the club logo's terminal-inspired theme: high-contrast black, crisp white type, neon green code accents, grid lines, and compact monospace details.</p>
+        </div>
       </div>
     </div>
 
     <section id="about">
       <div class="wrap">
         <div class="section-head reveal">
-          <div class="kicker">What we do</div>
+          <div class="kicker">// what_we_do</div>
           <h2>Turn problem solving into a competitive skill.</h2>
           <p>We meet at Carmel High School to learn competitive programming concepts, work through problems, and prepare for contests such as USACO and Codeforces.</p>
         </div>
@@ -435,14 +620,14 @@
     <section id="join">
       <div class="wrap meeting">
         <div class="meeting-main reveal">
-          <div class="kicker">Weekly meetings</div>
+          <div class="kicker">// weekly_meetings</div>
           <h3>Just show up.</h3>
           <p>No complicated application process. Come to a meeting, meet the team, and start solving. Meeting reminders and event updates are posted in Discord.</p>
           <div class="meta-row">
-            <span class="chip">Thursday</span>
-            <span class="chip">After school</span>
-            <span class="chip">Carmel High School</span>
-            <span class="chip">All experience levels</span>
+            <span class="chip">THURSDAY</span>
+            <span class="chip">AFTER SCHOOL</span>
+            <span class="chip">CARMEL HIGH SCHOOL</span>
+            <span class="chip">ALL EXPERIENCE LEVELS</span>
           </div>
         </div>
         <div class="join-panel reveal">
@@ -462,7 +647,7 @@
     <section id="resources">
       <div class="wrap">
         <div class="section-head reveal">
-          <div class="kicker">Resources</div>
+          <div class="kicker">// resources</div>
           <h2>Train between meetings.</h2>
           <p>A few useful places to learn concepts, practice problems, and find contests.</p>
         </div>
@@ -486,7 +671,7 @@
     <section id="leadership">
       <div class="wrap">
         <div class="section-head reveal">
-          <div class="kicker">2026–27</div>
+          <div class="kicker">// 2026_27</div>
           <h2>Leadership team</h2>
           <p>The students helping organize chs-cpc for the school year.</p>
         </div>
@@ -501,12 +686,12 @@
 
     <div class="wrap">
       <section class="cta reveal">
-        <div class="kicker">Ready to start?</div>
+        <div class="kicker">// ready_to_start?</div>
         <h2>You do not need to be an expert to join.</h2>
         <p>Bring a laptop, bring questions, and bring a willingness to solve. Join the Discord for the latest meeting and event information.</p>
         <div class="actions">
-          <a class="btn btn-primary" href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">Join chs-cpc on Discord <span>↗</span></a>
-          <a class="btn btn-secondary" href="https://www.instagram.com/chs.cpc/" target="_blank" rel="noopener noreferrer">Follow @chs.cpc</a>
+          <a class="btn btn-primary" href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">JOIN_CHS_CPC ↗</a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/chs.cpc/" target="_blank" rel="noopener noreferrer">FOLLOW_@CHS.CPC</a>
         </div>
       </section>
     </div>
@@ -514,7 +699,10 @@
 
   <footer>
     <div class="wrap footer-inner">
-      <div><strong style="color:#dce9fb">chs-cpc</strong> · Competitive Programming Club · Carmel High School</div>
+      <div class="footer-brand">
+        <img src="assets/chs-cpc-simple.webp" alt="" aria-hidden="true" />
+        <div><strong>chs-cpc</strong><br />Competitive Programming Club · Carmel High School</div>
+      </div>
       <div class="footer-links">
         <a href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">Discord</a>
         <a href="https://www.instagram.com/chs.cpc/" target="_blank" rel="noopener noreferrer">Instagram</a>
