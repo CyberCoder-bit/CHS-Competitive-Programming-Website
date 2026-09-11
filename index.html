@@ -6,7 +6,7 @@
   <meta name="description" content="chs-cpc — Carmel High School Competitive Programming Club. Learn algorithms, solve problems, and compete in USACO, Codeforces, and more." />
   <meta name="theme-color" content="#020502" />
   <title>chs-cpc | Competitive Programming Club</title>
-  <link rel="icon" type="image/png" href="assets/chs-cpc-logo-c-only.png" />
+  <link rel="icon" type="image/png" href="assets/cpc-logo-c-only.png" />
   <style>
     :root {
       --bg: #020502;
@@ -89,8 +89,8 @@
       letter-spacing: -.03em;
     }
     .brand img {
-      width: 44px;
-      height: 44px;
+      width: 176px;
+      height: 48px;
       object-fit: contain;
       background: #000;
       border: 1px solid rgba(53,239,88,.32);
@@ -127,6 +127,7 @@
       align-items: center;
       min-height: calc(100vh - 74px);
     }
+    .hero-copy { min-width: 0; }
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -368,6 +369,16 @@
     .person strong { display: block; color: var(--white); }
     .person span { color: var(--muted); font-size: 12px; }
 
+    .schedule { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .schedule-card { padding: 28px; }
+    .schedule-card h3 { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 1.35rem; margin-bottom: 4px; }
+    .schedule-card p { color: var(--muted); margin-bottom: 18px; font-size: .92rem; }
+    .date-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .date-list li { display: flex; align-items: center; gap: 10px; padding: 9px 11px; color: #dfffe5; background: rgba(0,255,65,.035); border: 1px solid var(--line); font-weight: 800; font-size: .9rem; }
+    .date-list li::before { content: "//"; color: var(--green); }
+    .callout-date { color: #001a05; background: var(--green) !important; border-color: var(--green) !important; }
+    .callout-date::before { color: #001a05 !important; }
+
     .cta {
       margin: 28px 0 76px;
       padding: clamp(30px, 6vw, 56px);
@@ -404,12 +415,14 @@
       .leadership { grid-template-columns: repeat(2, 1fr); }
       .brand-strip-inner { grid-template-columns: 145px 1fr; }
       .brand-strip img { width: 130px; height: 130px; }
+      .schedule { grid-template-columns: 1fr; }
     }
     @media (max-width: 680px) {
       .nav-inner { min-height: 64px; }
+      .brand img { width: 44px; height: 44px; }
       .brand-text span { display: none; }
       .nav-links a:not(.join-small) { display: none; }
-      h1 { font-size: clamp(3rem, 17vw, 5.35rem); }
+      h1 { font-size: clamp(2.7rem, 14vw, 4.7rem); }
       section { padding: 58px 0; }
       .resources, .leadership { grid-template-columns: 1fr; }
       .brand-strip-inner { grid-template-columns: 1fr; text-align: center; padding: 32px 0; }
@@ -419,13 +432,81 @@
       .logo-frame { width: min(340px, 90vw); padding: 10px; }
       .logo-caption { flex-direction: column; gap: 3px; }
     }
+
+    /* Apple-design refinement: calm hierarchy, responsive materials, and immediate feedback. */
+    :root { --bg: #07110b; --panel: rgba(15,29,20,.72); --line: rgba(183,255,202,.14); --line-strong: rgba(76,232,123,.45); --text: #f4fff6; --muted: #aec1b3; --green: #42e878; --green-hot: #57ff8d; --shadow: 0 18px 50px rgba(0,0,0,.24); }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(circle at 82% 2%, rgba(66,232,120,.14), transparent 30rem), radial-gradient(circle at 4% 34%, rgba(59,130,246,.08), transparent 32rem), linear-gradient(180deg, #0a1810 0%, var(--bg) 48%, #061008 100%); }
+    body::before { opacity: .35; background-size: 48px 48px; mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.3) 35%, transparent 72%); }
+    body::after { display: none; }
+    .wrap { width: min(calc(100% - 40px), var(--max)); }
+    nav { background: rgba(7,17,11,.68); border-bottom: 1px solid rgba(255,255,255,.08); box-shadow: 0 12px 28px rgba(0,0,0,.12); backdrop-filter: blur(24px) saturate(145%); }
+    .nav-inner { min-height: 76px; }
+    .brand { gap: 11px; }
+    .brand img { border: 0; box-shadow: none; background: transparent; }
+    .brand-text strong { font-size: 14px; letter-spacing: -.02em; }
+    .brand-text span { color: #b3f9c7; font-size: 9px; letter-spacing: .13em; }
+    .nav-links { gap: 3px; }
+    .nav-links a { border-radius: 999px; padding: 9px 13px; font-size: 12px; }
+    .nav-links a:hover { border-color: transparent; background: rgba(255,255,255,.08); color: var(--text); }
+    .nav-links .join-small { box-shadow: 0 7px 18px rgba(66,232,120,.17); }
+    .hero { padding: 96px 0 82px; gap: 76px; min-height: auto; }
+    .eyebrow { border-radius: 999px; border-color: rgba(95,255,145,.26); padding: 8px 12px; background: rgba(66,232,120,.08); }
+    .status-dot { animation: none; width: 6px; height: 6px; box-shadow: 0 0 10px var(--green-hot); }
+    h1, h2, h3, .hero-copy > p, .section-head p, .card h3, .card p, .meeting-main h3, .meeting-main p, .link-card small, .resource span, .cta p { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    h1 { font-size: clamp(3.2rem, 6.5vw, 6.05rem); line-height: .94; letter-spacing: -.07em; }
+    h2 { letter-spacing: -.055em; line-height: 1.02; }
+    .hero-copy > p { max-width: 620px; line-height: 1.65; font-size: clamp(1rem, 1.5vw, 1.16rem); }
+    .btn { border-radius: 999px; min-height: 50px; padding: 0 20px; transition: transform .16s ease-out, background .16s ease-out, box-shadow .16s ease-out; }
+    .btn:active, .nav-links a:active, .link-card:active, .card:active { transform: scale(.98); }
+    .btn-primary { box-shadow: 0 10px 24px rgba(66,232,120,.22); }
+    .btn-secondary { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); }
+    .btn-secondary:hover { color: var(--text); background: rgba(255,255,255,.11); }
+    .logo-stage { min-height: 460px; }
+    .logo-stage::before { width: min(500px, 90vw); background: radial-gradient(circle, rgba(66,232,120,.18), rgba(66,232,120,.035) 42%, transparent 70%); animation: none; }
+    .logo-frame { width: min(450px, 90vw); padding: 18px; border-radius: 28px; border-color: rgba(151,255,184,.24); background: rgba(6,14,9,.82); box-shadow: 0 24px 60px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.08); backdrop-filter: blur(20px); }
+    .logo-frame::before, .logo-frame::after { display: none; }
+    .logo-frame img { border-radius: 15px; }
+    .logo-caption { padding: 15px 5px 2px; }
+    .terminal { border-radius: 18px; border-color: rgba(255,255,255,.1); background: rgba(5,13,8,.62); box-shadow: none; overflow: hidden; }
+    .terminal pre { font-size: 12px; }
+    section { padding: 92px 0; }
+    .brand-strip { background: rgba(255,255,255,.025); border-color: rgba(255,255,255,.08); }
+    .brand-strip-inner { min-height: 210px; }
+    .brand-strip img { border: 0; border-radius: 24px; background: transparent; }
+    .grid-3, .resources { gap: 18px; }
+    .card, .meeting-main, .link-card, .cta { border-radius: 24px; border-color: rgba(255,255,255,.1); background: rgba(19,37,25,.62); box-shadow: 0 18px 45px rgba(0,0,0,.13), inset 0 1px rgba(255,255,255,.055); backdrop-filter: blur(18px) saturate(125%); }
+    .card { padding: 26px; }
+    .card::after { background: linear-gradient(90deg, transparent, rgba(183,255,202,.3), transparent); }
+    .card:hover { border-color: rgba(135,255,171,.34); transform: translateY(-2px); }
+    .icon, .avatar { border-radius: 14px; }
+    .meeting { gap: 20px; }
+    .meeting-main { padding: 38px; background: linear-gradient(135deg, rgba(66,232,120,.12), transparent 55%), rgba(19,37,25,.68); }
+    .chip { border-radius: 999px; border-color: rgba(163,255,190,.2); background: rgba(66,232,120,.08); }
+    .join-panel { gap: 12px; }
+    .link-card { min-height: 98px; padding: 21px 22px; transition: transform .18s ease-out, border-color .18s ease-out, background .18s ease-out; }
+    .link-card:hover { border-color: rgba(135,255,171,.4); background: rgba(37,67,45,.72); transform: translateY(-2px); }
+    .schedule { gap: 20px; }
+    .schedule-card { padding: 30px; }
+    .date-list li { border-radius: 12px; border-color: rgba(255,255,255,.09); background: rgba(5,13,8,.36); padding: 10px 12px; }
+    .callout-date { box-shadow: 0 8px 16px rgba(66,232,120,.18); }
+    .cta { margin-top: 12px; border-color: rgba(151,255,184,.22); background: radial-gradient(circle at 50% -10%, rgba(66,232,120,.16), transparent 27rem), rgba(19,37,25,.68); }
+    footer { border-color: rgba(255,255,255,.08); }
+    .footer-brand img { border: 0; border-radius: 12px; background: transparent; }
+    .reveal { transform: translateY(12px); transition: opacity .38s ease-out, transform .38s cubic-bezier(.2,.8,.2,1); }
+    @media (prefers-reduced-motion: reduce) { .reveal { transition: opacity .18s ease; } }
+    @media (prefers-reduced-transparency: reduce) { nav, .card, .meeting-main, .link-card, .cta, .logo-frame { background: #102017; backdrop-filter: none; } }
+    @media (prefers-contrast: more) { .card, .meeting-main, .link-card, .cta, .btn-secondary { border-color: rgba(255,255,255,.6); } .muted, .card p, .section-head p { color: #d1e2d5; } }
+    @media (max-width: 680px) { .wrap { width: min(calc(100% - 32px), var(--max)); } .hero { padding: 62px 0; gap: 34px; } h1 { font-size: clamp(2.9rem, 14vw, 4.5rem); } .meeting-main, .card, .schedule-card { padding: 24px; } .logo-frame { border-radius: 22px; } }
   </style>
 </head>
 <body>
   <nav>
     <div class="wrap nav-inner">
       <a class="brand" href="#top" aria-label="chs-cpc home">
-        <img src="assets/chs-cpc-logo-c-only.png" alt="chs-cpc code C logo" />
+        <picture>
+          <source media="(max-width: 680px)" srcset="assets/cpc-logo-c-only.png" />
+          <img src="assets/cpc-logo-wide.png" alt="Carmel Competitive Programming Club" />
+        </picture>
         <span class="brand-text">
           <strong>chs-cpc</strong>
           <span>Competitive Programming Club</span>
@@ -433,6 +514,7 @@
       </a>
       <div class="nav-links">
         <a href="#about">About</a>
+        <a href="#schedule">Schedule</a>
         <a href="#resources">Resources</a>
         <a href="#leadership">Leadership</a>
         <a href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer" class="join-small">Join Discord</a>
@@ -457,13 +539,13 @@
 <span class="code-green">[OK]</span> learn algorithms
 <span class="code-green">[OK]</span> practice problem solving
 <span class="code-green">[OK]</span> compete in USACO + Codeforces
-<span class="code-muted">next_meeting:</span> Thursday after school</pre>
+<span class="code-muted">next_meeting:</span> Sep 22 · 4:05–5:15 PM · F104</pre>
         </div>
       </div>
 
       <div class="logo-stage reveal">
         <div class="logo-frame">
-          <img src="https://raw.githubusercontent.com/CHS-Competitive-Programming/chs-cpc-website/main/assets/chs-cpc-logo-full.png" alt="Carmel Competitive Programming Club full logo" />
+          <img src="assets/cpc-logo-full.png" alt="Carmel Competitive Programming Club full logo" />
           <div class="logo-caption">
             <span>Carmel // competitive programming</span>
             <span>chs-cpc</span>
@@ -474,7 +556,7 @@
 
     <div class="brand-strip">
       <div class="wrap brand-strip-inner reveal">
-        <img src="assets/chs-cpc-logo-c-only.png" alt="Green code C logo for chs-cpc" />
+        <img src="assets/cpc-logo-c-only.png" alt="Green code C logo for chs-cpc" />
         <div>
           <div class="kicker">Our visual identity</div>
           <h3>Black. White. Code green.</h3>
@@ -515,10 +597,10 @@
         <div class="meeting-main reveal">
           <div class="kicker">// weekly_meetings</div>
           <h3>Just show up.</h3>
-          <p>No complicated application process. Come to a meeting, meet the team, and start solving. Meeting reminders and event updates are posted in Discord.</p>
+          <p>No application required. Our callout meeting is <strong>September 22 from 4:05–5:15 PM in F104</strong>. Come meet the team and start solving.</p>
           <div class="meta-row">
-            <span class="chip">THURSDAY</span>
-            <span class="chip">AFTER SCHOOL</span>
+            <span class="chip">SEP 22 · 4:05–5:15 PM</span>
+            <span class="chip">ROOM F104</span>
             <span class="chip">CARMEL HIGH SCHOOL</span>
             <span class="chip">ALL EXPERIENCE LEVELS</span>
           </div>
@@ -527,12 +609,44 @@
           <a class="link-card" href="https://discord.gg/ps3dFVb2yk" target="_blank" rel="noopener noreferrer">
             <div><strong>Discord</strong><small>Meeting reminders, announcements, and club chat</small></div><span class="arrow">↗</span>
           </a>
+          <a class="link-card" href="https://www.remind.com/join/chs-cpc" target="_blank" rel="noopener noreferrer">
+            <div><strong>Remind · @chs-cpc</strong><small>Text updates and meeting reminders</small></div><span class="arrow">↗</span>
+          </a>
           <a class="link-card" href="https://www.instagram.com/chs.cpc/" target="_blank" rel="noopener noreferrer">
             <div><strong>Instagram · @chs.cpc</strong><small>Club updates and highlights</small></div><span class="arrow">↗</span>
           </a>
           <a class="link-card" href="mailto:chscompetitiveprogrammingclub@gmail.com">
             <div><strong>Email</strong><small>chscompetitiveprogrammingclub@gmail.com</small></div><span class="arrow">→</span>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">// 2026_27_meeting_dates</div>
+          <h2>Save the dates.</h2>
+          <p>Club meetings are scheduled across the school year. The September 22 callout is in F104 from 4:05–5:15 PM.</p>
+        </div>
+        <div class="schedule">
+          <article class="card schedule-card reveal">
+            <div class="kicker">fall 2026</div>
+            <h3>Build the foundation.</h3>
+            <p>Start with the callout, then join us for fall problem-solving sessions.</p>
+            <ul class="date-list">
+              <li class="callout-date">September 22 · Callout</li>
+              <li>October 20</li><li>October 27</li><li>November 10</li><li>November 24</li><li>December 1</li><li>December 15</li>
+            </ul>
+          </article>
+          <article class="card schedule-card reveal">
+            <div class="kicker">spring 2027</div>
+            <h3>Keep competing.</h3>
+            <p>Continue practicing, learning new techniques, and competing together.</p>
+            <ul class="date-list">
+              <li>January 5</li><li>January 26</li><li>February 9</li><li>February 23</li><li>March 2</li><li>March 9</li><li>March 23</li><li>April 13</li><li>April 27</li><li>May 11</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -593,7 +707,7 @@
   <footer>
     <div class="wrap footer-inner">
       <div class="footer-brand">
-        <img src="assets/chs-cpc-logo-c-only.png" alt="" aria-hidden="true" />
+        <img src="assets/cpc-logo-c-only.png" alt="" aria-hidden="true" />
         <div><strong>chs-cpc</strong><br />Competitive Programming Club · Carmel High School</div>
       </div>
       <div class="footer-links">
